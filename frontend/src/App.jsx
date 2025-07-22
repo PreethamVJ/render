@@ -5,7 +5,7 @@ function App() {
   const [newNote, setNewNote] = useState('')
 
   useEffect(() => {
-    fetch('http://api/notes')
+    fetch('/api/notes')
       .then(response => response.json())
       .then(data => setNotes(data))
   }, [])
@@ -13,7 +13,7 @@ function App() {
   const addNote = (event) => {
     event.preventDefault()
     const noteObject = { content: newNote }
-    fetch('http:api/notes', {
+    fetch('/api/notes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(noteObject),
@@ -22,6 +22,7 @@ function App() {
       .then(returnedNote => setNotes(notes.concat(returnedNote)))
     setNewNote('')
   }
+  //addnote above
 
   return (
     <div>
