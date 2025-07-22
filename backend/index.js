@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const Note = require('./models/note'); 
 app.use(cors());
 app.use(express.json());
 app.use(express.static('dist'));
@@ -14,7 +14,9 @@ let notes = [
 
 // 🔹 Send notes to frontend
 app.get('/api/notes', (req, res) => {
-  res.json(notes);
+  Note.find({}).then(notes => {
+    res.json(notes);
+  });
 });
 
 app.get('/', (req, res) => {
@@ -22,12 +24,20 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
-  const note = {
-    id: notes.length + 1,
-    content: req.body.content
-  };
-  notes.push(note);
-  res.json(note);
+  // const note = {
+  //   id: notes.length + 1,
+  //   content: req.body.content
+  // };
+  // notes.push(note);
+  // res.json(note);
+  const note = new Note({
+    content,
+    important
+  });
+
+  note.save().then(savedNote => {
+    res.json(savedNote);
+  });
 });
 
 app.delete('/api/notes/:id', (req, res) => {
