@@ -47,6 +47,8 @@ mongoose.connect(url)
   .catch((error) => {
     console.error('error connecting to MongoDB:', error.message)
   })
+
+
 note.save().then(result => {
   console.log('note saved!')
   mongoose.connection.close()
@@ -61,3 +63,5 @@ note.save().then(result => {
 //   mongoose.connection.close()
 // })
 
+
+module.exports = Note;

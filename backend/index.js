@@ -37,6 +37,8 @@ app.post('/api/notes', (req, res) => {
 
   note.save().then(savedNote => {
     res.json(savedNote);
+  }).catch(err => {
+    res.status(500).json({ error: 'Error saving note' });
   });
 });
 
