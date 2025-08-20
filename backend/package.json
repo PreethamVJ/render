@@ -6,7 +6,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build:ui": "cd ../frontend && npm install && npm run build && cd ../backend && rm -rf dist && cp -r ../frontend/dist .",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
+    "test": "jest --verbose --runInBand"
   },
   "keywords": [],
   "author": "",

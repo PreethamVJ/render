@@ -1,6 +1,7 @@
+const jwt = require('jsonwebtoken')
 const notesRouter = require('express').Router()
 const Note = require('../models/mongo')
-
+const middleware = require('../utils/middleware')
 notesRouter.get('/', (request, response) => {
   Note.find({}).then(notes => {
     response.json(notes)
